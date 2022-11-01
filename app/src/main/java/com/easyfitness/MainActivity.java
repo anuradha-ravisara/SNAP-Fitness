@@ -111,7 +111,6 @@ public class MainActivity extends AppCompatActivity {
     private ProfileFragment mpProfileFrag = null;
     private MachineFragment mpMachineFrag = null;
     private SettingsFragment mpSettingFrag = null;
-    private AboutFragment mpAboutFrag = null;
     private BodyPartListFragment mpBodyPartListFrag = null;
     private ProgramListFragment mpWorkoutListFrag;
     private String currentFragmentName = "";
@@ -225,7 +224,6 @@ public class MainActivity extends AppCompatActivity {
             if (mpWeightFrag == null) mpWeightFrag = WeightFragment.newInstance(WEIGHT, 5);
             if (mpProfileFrag == null) mpProfileFrag = ProfileFragment.newInstance(PROFILE, 10);
             if (mpSettingFrag == null) mpSettingFrag = SettingsFragment.newInstance(SETTINGS, 8);
-            if (mpAboutFrag == null) mpAboutFrag = AboutFragment.newInstance(ABOUT, 4);
             if (mpMachineFrag == null) mpMachineFrag = MachineFragment.newInstance(MACHINES, 7);
             if (mpBodyPartListFrag == null)
                 mpBodyPartListFrag = BodyPartListFragment.newInstance(BODYTRACKING, 9);
@@ -236,7 +234,6 @@ public class MainActivity extends AppCompatActivity {
             mpWeightFrag = (WeightFragment) getSupportFragmentManager().getFragment(savedInstanceState, WEIGHT);
             mpProfileFrag = (ProfileFragment) getSupportFragmentManager().getFragment(savedInstanceState, PROFILE);
             mpSettingFrag = (SettingsFragment) getSupportFragmentManager().getFragment(savedInstanceState, SETTINGS);
-            mpAboutFrag = (AboutFragment) getSupportFragmentManager().getFragment(savedInstanceState, ABOUT);
             mpMachineFrag = (MachineFragment) getSupportFragmentManager().getFragment(savedInstanceState, MACHINES);
             mpBodyPartListFrag = (BodyPartListFragment) getSupportFragmentManager().getFragment(savedInstanceState, BODYTRACKING);
             mpWorkoutListFrag = (ProgramListFragment) getSupportFragmentManager().getFragment(savedInstanceState, WORKOUTS);
@@ -426,8 +423,6 @@ public class MainActivity extends AppCompatActivity {
             getSupportFragmentManager().putFragment(outState, PROFILE, mpProfileFrag);
         if (getMachineFragment().isAdded())
             getSupportFragmentManager().putFragment(outState, MACHINES, mpMachineFrag);
-        if (getAboutFragment().isAdded())
-            getSupportFragmentManager().putFragment(outState, ABOUT, mpAboutFrag);
         if (getSettingsFragment().isAdded())
             getSupportFragmentManager().putFragment(outState, SETTINGS, mpSettingFrag);
         if (getBodyPartFragment().isAdded())
@@ -839,8 +834,6 @@ public class MainActivity extends AppCompatActivity {
             ft.replace(R.id.fragment_container, getMachineFragment(), MACHINES);
         } else if (pFragmentName.equals(WORKOUTS)) {
             ft.replace(R.id.fragment_container, getWorkoutListFragment(), WORKOUTS);
-        } else if (pFragmentName.equals(ABOUT)) {
-            ft.replace(R.id.fragment_container, getAboutFragment(), ABOUT);
         } else if (pFragmentName.equals(BODYTRACKING)) {
             ft.replace(R.id.fragment_container, getBodyPartFragment(), BODYTRACKING);
         } else if (pFragmentName.equals(PROFILE)) {
@@ -953,14 +946,6 @@ public class MainActivity extends AppCompatActivity {
             mpMachineFrag = (MachineFragment) getSupportFragmentManager().findFragmentByTag(MACHINES);
         if (mpMachineFrag == null) mpMachineFrag = MachineFragment.newInstance(MACHINES, 7);
         return mpMachineFrag;
-    }
-
-    private AboutFragment getAboutFragment() {
-        if (mpAboutFrag == null)
-            mpAboutFrag = (AboutFragment) getSupportFragmentManager().findFragmentByTag(ABOUT);
-        if (mpAboutFrag == null) mpAboutFrag = AboutFragment.newInstance(ABOUT, 6);
-
-        return mpAboutFrag;
     }
 
     private BodyPartListFragment getBodyPartFragment() {
